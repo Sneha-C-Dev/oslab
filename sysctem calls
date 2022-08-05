@@ -1,0 +1,168 @@
+1. fork()
+
+PROGRAM
+
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+void main()
+{
+fork();
+printf(“Invoked fork(). Output process with PID %d\n”,getpid());
+}
+
+
+---------------------------------
+
+2.exec()
+
+PROGRAM
+
+//exec1.c
+
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+int main()
+{
+char* args[]={ “Hello”, NULL};
+execv{“./exec2”,args};
+return 0;
+}
+
+//exec2.c
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+int main()
+{
+printf(“Replaced with program 2 \n”);
+return 0;
+}
+
+-----------------------------------------------------------------------
+
+3.getpid()
+
+PROGRAM
+#include<stdio.h>
+#include<unistd.h>
+int main()
+{
+printf(“This process has a process ID = %d\n”, getpid());
+return 0;
+}
+
+
+----------------------------------------------------------------------
+
+4.exit()
+
+PROGRAM
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{
+printf(“\nSample program to demonstrate exit() system call.\nThis process will now
+terminate\n”);
+exit(0);
+
+}
+
+-------------------------------------------------------------------------
+
+5.wait()
+
+PROGRAM
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/types.h>
+#include<unistd.h>
+int main()
+{
+if(fork()==0)
+{
+printf(“\nExecuting child process after fork\n”);
+}
+else
+{
+printf(“Executing parent process\n”);
+wait(NULL);
+printf(“Executing after termination of child\n”);
+}
+return 0;
+}
+
+-----------------------------------------------------------------------------
+
+6.close()
+
+PROGRAM
+#include<stdio.h>
+#include<stdlib.h>
+#include<fctnl.h>
+#include<unistd.h>
+int main()
+{
+int fd1 = open(“text.txt”,O_RDONLY);
+if (fd1 < 0)
+{
+perror("Error opening");
+exit(1);
+}
+printf("Opened the file descriptor = % d\n", fd1);
+if (close(fd1) < 0)
+{
+perror("Error closing");
+exit(1);
+
+}
+printf("Closed the file descriptor successfully.\n"); }
+}
+
+--------------------------------------------------------------------------------
+
+8.opendir()
+
+PROGRAM
+#include<stdio.h>
+#include<dirent.h>
+void main()
+{
+DIR * dir;
+dir=opendir(".");
+if(dir==NULL)
+{
+printf("\nCould not open the directory\n\n");
+}
+else
+{
+printf("\nOpened the directory\n\n");
+}
+}
+
+--------------------------------------------------------------------------------
+
+9.readdir()
+
+PROGRAM
+
+#include<stdio.h>
+#include<dirent.h>
+void main()
+{
+DIR *dir;
+struct dirent *dent;
+if((dir=opendir("."))==NULL)
+{
+printf("Could not open the directory");
+}
+else
+{
+while((dent=readdir(dir))!=NULL)
+{
+printf("%s\n",dent->d_name);
+}
+closedir(dir);
+}
+}
