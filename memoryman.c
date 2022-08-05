@@ -22,5 +22,21 @@ int main()
       scanf("%d",&psize[i]);
   }
   
-  for()
+  for(i=0;i<pno;i++)
+   for(j=0;j<bno;j++)
+   {
+     if(bsize[j]<=psize[j])
+     {
+         allocation[j]=i;
+         bsize[j]=psize[j];
+      printf("Memory block %d allocated to the process %d\n",j+1,i+1);
+      break;
+     }
+    else if(j==bno)
+    {
+       printf("Cannot allocate memory");
+       break;
+    }
+   }
+ return 0;
 }
