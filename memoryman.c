@@ -18,7 +18,7 @@ void firstFit(int blockSize[], int m, int processSize[], int n)
 	}
 
 	// pick each process and find suitable blocks
-	// according to its size ad assign to it
+	// according to its size and assign to it
 	for (i = 0; i < n; i++)	 //here, n -> number of processes
 	{
 		for (j = 0; j < m; j++)	 //here, m -> number of blocks
@@ -72,8 +72,7 @@ using namespace std;
 
 // Function to allocate memory to blocks as per worst fit
 // algorithm
-void worstFit(int blockSize[], int m, int processSize[],
-												int n)
+void worstFit(int blockSize[], int m, int processSize[],int n)
 {
 	// Stores block id of the block allocated to a
 	// process
